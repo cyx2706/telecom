@@ -27,7 +27,7 @@ public class Order {
     private String shopId;
 
     @Column(nullable = false)
-    private int schid;
+    private int schId;
 
     @Column(nullable = false)
     private String ordTel;
@@ -69,12 +69,12 @@ public class Order {
         this.shopId = shopId;
     }
 
-    public int getSchid() {
-        return schid;
+    public int getSchId() {
+        return schId;
     }
 
-    public void setSchid(int schid) {
-        this.schid = schid;
+    public void setSchId(int schId) {
+        this.schId = schId;
     }
 
     public String getOrdTel() {
