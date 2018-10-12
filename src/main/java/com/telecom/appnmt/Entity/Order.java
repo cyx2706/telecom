@@ -1,19 +1,17 @@
 package com.telecom.appnmt.Entity;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  * 2018/10/13 00:12:00修改
  * 订单对象
  */
-@Table(name = "order")
+@Table(name = "`order`")
 @Entity
 @Component
 public class Order {
@@ -21,7 +19,7 @@ public class Order {
     private String ordId;
 
     @Column(nullable = false)
-    private String userId;
+    private String usrId;
 
     @Column(nullable = false)
     private String shopId;
@@ -35,9 +33,14 @@ public class Order {
     @Column(nullable = false)
     private String ordAddr;
 
-    @CreatedDate
     @Column(nullable = false)
-    private Date ordTime;
+    private String ordTime;
+
+    /**
+     * 订单的二维码图片保存地址,默认可以为空
+     */
+    @Column(nullable = true)
+    private String ordQrcode;
 
     /**
      * 订单创建是,默认状态是0 未支付
@@ -53,12 +56,12 @@ public class Order {
         this.ordId = ordId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsrId() {
+        return usrId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsrId(String usrId) {
+        this.usrId = usrId;
     }
 
     public String getShopId() {
@@ -93,11 +96,11 @@ public class Order {
         this.ordAddr = ordAddr;
     }
 
-    public Date getOrdTime() {
+    public String getOrdTime() {
         return ordTime;
     }
 
-    public void setOrdTime(Date ordTime) {
+    public void setOrdTime(String ordTime) {
         this.ordTime = ordTime;
     }
 
@@ -107,5 +110,13 @@ public class Order {
 
     public void setOrdStatus(int ordStatus) {
         this.ordStatus = ordStatus;
+    }
+
+    public String getOrdQrcode() {
+        return ordQrcode;
+    }
+
+    public void setOrdQrcode(String ordQrcode) {
+        this.ordQrcode = ordQrcode;
     }
 }
