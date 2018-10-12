@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 测试订单CURD,主要是检验实体类字段是否有错、jpa的自动完成是否有误
@@ -23,11 +25,14 @@ public class OrderDaoTest {
     @Autowired
     private OrderDao orderDao;
 
-    @Test
+    /**
+     * 测试通过
+     */
+//    @Test
     public void a() {
-        order.setOrdId("123");
+        order.setOrdId("125");
         order.setUsrId("123");
-        order.setShopId("123");
+        order.setShopId("125");
         order.setSchId(1);
         order.setOrdTel("15013330307");
         order.setOrdAddr("地址是 xxxx");
@@ -40,6 +45,20 @@ public class OrderDaoTest {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("创建订单失败,请稍后再试");
+        }
+    }
+
+
+    /**
+     * 2018/10/13 03:34:00 测试通过
+     */
+    @Test
+    public void b() {
+        try {
+            List<Map<String,Object>> res = orderDao.countShopOrderNumByHallId("1");
+            System.out.println(res.size());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
