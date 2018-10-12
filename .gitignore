@@ -17,7 +17,6 @@
 *.ipr
 /.idea/
 .idea/
-.mvn/
 
 ### NetBeans ###
 /nbproject/private/
