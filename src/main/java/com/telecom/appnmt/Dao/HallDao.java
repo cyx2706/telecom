@@ -10,10 +10,13 @@ import java.util.List;
 
 public interface HallDao extends JpaRepository<Hall, String>,JpaSpecificationExecutor<Hall> {
 
-    public List<Hall> findAllByHallId(String id);
-
     public Hall findByHallId(String id);
 
-//    @Query("select *,order from ")
-//    public List<Order> findHallOrders();
+    /**
+     * 用于登录的Dao接口,根据账号和密码寻找Hall对象
+     * @param account
+     * @param password
+     * @return
+     */
+    public Hall findByHallAccountAndHallPassword(String account,String password);
 }

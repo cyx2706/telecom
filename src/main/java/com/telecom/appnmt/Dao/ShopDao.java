@@ -8,8 +8,14 @@ import java.util.List;
 
 public interface ShopDao extends JpaRepository<Shop, String>,JpaSpecificationExecutor<Shop> {
 
-    public List<Shop> findAllByShopId(String id);
-
     public Shop findByShopId(String id);
+
+    /**
+     * 根据商店账号及密码寻找商店,用于登录
+     * @param account
+     * @param password
+     * @return
+     */
+    public Shop findByShopAccountAndShopPassword(String account,String password);
 
 }
