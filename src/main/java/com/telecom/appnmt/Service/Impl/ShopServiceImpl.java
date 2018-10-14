@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
@@ -27,7 +28,10 @@ public class ShopServiceImpl implements ShopService {
      * 创建一个新的营业厅到数据库
      * @return
      */
-    public Shop create() {
+    @Override
+    public Shop create(String Hallid) {
+        // 记录创建该商店的营业厅id 方便以后查询
+        shop.setHallId(Hallid);
         // account 默认情况下就是 shop_数字 表示第几个shop
         shop.setShopAccount("shop_"+(shopDao.count()+1));
         // tel 电话默认是13XXXXXXXXX(后面9位随机数)

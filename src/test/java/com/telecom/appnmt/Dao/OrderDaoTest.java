@@ -55,7 +55,7 @@ public class OrderDaoTest {
     @Test
     public void b() {
         try {
-            List<Map<String,Object>> res = orderDao.countShopOrderNumByHallId("1");
+            List<Map<String,Object>> res = orderDao.countShopOrderNumByHallId("123456");
             System.out.println(res.size());
         } catch (Exception e) {
             e.printStackTrace();

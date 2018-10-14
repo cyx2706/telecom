@@ -22,7 +22,8 @@ public class HallController {
     @RequestMapping(value = "/createShop")
     public Map<String,Object> c() {
         Map res = new HashMap<String,Object>();
-        res.put("data",shopService.create());
+        String hallId = "123456";
+        res.put("data",shopService.create(hallId));
         return res;
     }
 

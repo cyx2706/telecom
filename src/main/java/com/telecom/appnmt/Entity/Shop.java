@@ -17,6 +17,9 @@ public class Shop {
     @Id
     private String shopId;
 
+    @Column(nullable = false)
+    private String hallId;
+
     @Column(nullable = false, unique = true)
     private String shopAccount;
 
@@ -44,6 +47,14 @@ public class Shop {
 
     public void setShopId(String shopId) {
         this.shopId = shopId;
+    }
+
+    public String getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(String hallId) {
+        this.hallId = hallId;
     }
 
     public String getShopAccount() {

@@ -18,7 +18,7 @@ public interface OrderDao extends JpaRepository<Order, String> {
      * @param hallId
      * @return
      */
-    @Query(value = "SELECT shop.shop_name,COUNT(ord.shop_id) AS ord_num FROM `order` AS ord JOIN hall_shop AS hs ON ord.shop_id=hs.shop_id JOIN shop ON shop.shop_id=ord.shop_id WHERE hs.hall_id=?1 GROUP BY ord.shop_id",nativeQuery = true)
+    @Query(value = "SELECT shop.shop_name,COUNT(ord.shop_id) AS ord_num FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 GROUP BY ord.shop_id",nativeQuery = true)
     public List<Map<String,Object>> countShopOrderNumByHallId(String hallId);
 
     /**

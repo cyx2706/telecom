@@ -17,11 +17,6 @@ public class HallDaoTest {
     private HallDao hallDao;
 
 //    @Test
-    public void findAllByHallId() throws Exception {
-        System.out.println("++++++++ size = "+hallDao.findAllByHallId("123456").size()+" ++++++");
-    }
-
-//    @Test
     public void findByHallId() throws Exception {
         System.out.println("++++++++ name = "+hallDao.findByHallId("123456").getHallName()+" ++++++");
     }

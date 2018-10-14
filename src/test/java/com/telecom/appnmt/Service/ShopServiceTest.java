@@ -17,7 +17,7 @@ public class ShopServiceTest {
 
     @Test
     public void create() throws Exception {
-        shopService.create();
+        shopService.create("123456");
     }
 
 }
