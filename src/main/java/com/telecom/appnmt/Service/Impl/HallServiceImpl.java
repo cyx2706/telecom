@@ -66,4 +66,17 @@ public class HallServiceImpl implements HallService {
             throw new RuntimeException("系统在获取商店列表时发生了错误,请稍后再试!");
         }
     }
+
+    /**
+     * 营业厅必须使用账号及密码登录
+     *
+     * @param account
+     * @param password
+     * @return
+     */
+    @Override
+    public Hall login(String account, String password) {
+        return hallDao.findByHallAccountAndHallPassword(
+                account,password);
+    }
 }

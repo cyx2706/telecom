@@ -62,4 +62,18 @@ public class OrderDaoTest {
         }
     }
 
+    /**
+     * 测试已通过
+     * 根据营业厅的id寻找所有管理商店完成的所有订单
+     */
+    @Test
+    public void c() {
+        try {
+            List<Order> list = orderDao.getAllByHallId("123456");
+            System.out.println("+++++++++++++"+list.size()+"++++++++++++++");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

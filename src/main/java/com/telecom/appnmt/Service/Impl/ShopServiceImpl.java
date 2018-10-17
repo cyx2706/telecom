@@ -29,9 +29,9 @@ public class ShopServiceImpl implements ShopService {
      * @return
      */
     @Override
-    public Shop create(String Hallid) {
+    public Shop create(String HallId) {
         // 记录创建该商店的营业厅id 方便以后查询
-        shop.setHallId(Hallid);
+        shop.setHallId(HallId);
         // account 默认情况下就是 shop_数字 表示第几个shop
         shop.setShopAccount("shop_"+(shopDao.count()+1));
         // tel 电话默认是13XXXXXXXXX(后面9位随机数)
@@ -49,8 +49,6 @@ public class ShopServiceImpl implements ShopService {
         shop.setShopOpenId("NULL");
         shop.setShopQrcode("NULL");
         try {
-            // 错误调试
-            // int i = 1/0;
             return shopDao.save(shop);
         } catch (Exception e) {
             throw new RuntimeException("系统在创建账号时发生了错误,请稍后再试!");
@@ -72,6 +70,32 @@ public class ShopServiceImpl implements ShopService {
             return shops.getContent();
         } catch (Exception e) {
             throw new RuntimeException("系统在获取商店列表时发生了错误,请稍后再试!");
+        }
+    }
+
+    /**
+     * 登录接口,根据账号及密码登录
+     * @param account
+     * @param password
+     * @return
+     */
+    @Override
+    public Shop login(String account, String password) {
+        return shopDao.findByShopAccountAndShopPassword(
+                account,
+                DigestUtils.md5DigestAsHex(password.getBytes()));
+    }
+
+    /**
+     * 获取营业厅管理的商店
+     * @param HallId
+     * @return
+     */
+    public List<Shop> getMyShopList(String HallId) {
+        try {
+            return shopDao.findAllByHallId(HallId);
+        } catch (Exception e) {
+            throw new RuntimeException("获取商店列表失败,请稍后再试!");
         }
     }
 }

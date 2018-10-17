@@ -20,4 +20,11 @@ public interface AdminService {
      */
     public Admin find(String account,String password);
 
+    /**
+     * 登录接口,账号及密码登录
+     * @param account
+     * @param password
+     * @return Admin|null
+     */
+    public Admin login(String account,String password);
 }

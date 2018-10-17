@@ -18,4 +18,12 @@ public interface HallService {
      * @return
      */
     public List<Hall> getListByPage(int page);
+
+    /**
+     * 营业厅必须使用账号及密码登录
+     * @param account
+     * @param password
+     * @return
+     */
+    public Hall login(String account,String password);
 }

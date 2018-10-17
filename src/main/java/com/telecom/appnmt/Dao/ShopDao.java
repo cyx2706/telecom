@@ -8,6 +8,11 @@ import java.util.List;
 
 public interface ShopDao extends JpaRepository<Shop, String>,JpaSpecificationExecutor<Shop> {
 
+    /**
+     * 根据商店id查找商店
+     * @param id
+     * @return
+     */
     public Shop findByShopId(String id);
 
     /**
@@ -18,4 +23,10 @@ public interface ShopDao extends JpaRepository<Shop, String>,JpaSpecificationExe
      */
     public Shop findByShopAccountAndShopPassword(String account,String password);
 
+    /**
+     * 根据营业厅
+     * @param hallId
+     * @return
+     */
+    public List<Shop> findAllByHallId(String hallId);
 }

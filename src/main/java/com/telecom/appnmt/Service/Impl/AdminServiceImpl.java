@@ -43,4 +43,17 @@ public class AdminServiceImpl implements AdminService {
                 account,
                 DigestUtils.md5DigestAsHex(password.getBytes()));
     }
+
+    /**
+     * 登录接口,账号及密码登录
+     *
+     * @param account
+     * @param password
+     * @return Admin|null
+     */
+    @Override
+    public Admin login(String account, String password) {
+        return adminDao.findByAdmAccountAndAdmPassword(
+                account,password);
+    }
 }

@@ -24,6 +24,6 @@ public class GlobalException {
             // 如果不是RuntimeException，就是其他出现问题
             info = "系统出现未知错误";
         }
-        return "{\"status\":false,\"info\":\"" + info + "\"}";
+        return "{\"status\":-1,\"info\":\"" + info + "\"}";
     }
 }

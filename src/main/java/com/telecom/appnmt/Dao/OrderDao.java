@@ -18,12 +18,22 @@ public interface OrderDao extends JpaRepository<Order, String> {
      * @param hallId
      * @return
      */
-    @Query(value = "SELECT shop.shop_name,COUNT(ord.shop_id) AS ord_num FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 GROUP BY ord.shop_id",nativeQuery = true)
+    @Query(value = "SELECT shop.shop_name,COUNT(ord.shop_id) AS ord_num FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 GROUP BY ord.shop_id ORDER BY ord.ord_time DESC",nativeQuery = true)
     public List<Map<String,Object>> countShopOrderNumByHallId(String hallId);
+
+    @Query(value = "SELECT ord.*,shop.shop_name AS shop_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
+    public List<Map<String,Object>> getAllByHallId(String hallId);
 
     /**
      * (暂未完成) 电信公司后台查看所有营业厅的订单数统计
      * @return
      */
     //public List<Map<String,Object>> countHallOrderNum();
+
+    /**
+     * 根据商店id获得某个商店的所有订单
+     * @param shopId
+     * @return
+     */
+    public List<Order> getAllByShopId(String shopId);
 }
