@@ -43,7 +43,7 @@ public class LoginController {
     public Map<String,Object> user(@RequestBody Map<String,Object> paraMap,HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
         String tel = paraMap.get("usr_tel").toString();
-        String openId = paraMap.get("open_id").toString();
+        String openId = (String) paraMap.get("open_id");
         User user = userService.login(tel,openId);
         // 登录失败发出提示
         if (user == null) {

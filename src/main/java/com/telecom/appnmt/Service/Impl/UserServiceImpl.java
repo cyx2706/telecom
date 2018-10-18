@@ -54,13 +54,13 @@ public class UserServiceImpl implements UserService {
         // 设定用户联系方式
         user.setUsrTel(
                 tel == null || tel.equals("") ? "NULL" : tel );
-        User res = null;
+        user.setUsrStatus(1);
         try {
-            res = userDao.save(user);
+            return userDao.save(user);
         } catch (Exception e) {
             throw new RuntimeException("系统出现错误,请尝试重新登录");
         }
-        return res;
+
     }
 
 
