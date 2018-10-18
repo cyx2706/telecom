@@ -48,8 +48,12 @@ public class UserServiceImpl implements UserService {
         // 用户id由注册时的openid及联系电话组成
         user.setUsrId(DigestUtils.md5DigestAsHex(
                 (tel + openId).getBytes()));
-        user.setUsrOpenId(openId);
-        user.setUsrTel(tel);
+        // 设定微信open_id
+        user.setUsrOpenId(
+                openId == null || openId.equals("") ? "NULL" : openId );
+        // 设定用户联系方式
+        user.setUsrTel(
+                tel == null || tel.equals("") ? "NULL" : tel );
         User res = null;
         try {
             res = userDao.save(user);

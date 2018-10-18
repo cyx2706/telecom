@@ -29,11 +29,11 @@ public class HallController {
      * @return
      */
     @RequestMapping(value = "/createShop")
-    public Map<String,Object> c() {
-        Map res = new HashMap<String,Object>();
-        String hallId = "123456";
-        res.put("data",shopService.create(hallId));
-        return res;
+    public Map<String,Object> c(HttpServletRequest req, HttpServletResponse res) {
+        Map json = new HashMap<String,Object>();
+        String hallId = req.getSession().getAttribute("hall_id").toString();
+        json.put("data",shopService.create(hallId));
+        return json;
     }
 
     /**

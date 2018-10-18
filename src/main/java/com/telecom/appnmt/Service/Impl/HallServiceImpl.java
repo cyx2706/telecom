@@ -77,6 +77,7 @@ public class HallServiceImpl implements HallService {
     @Override
     public Hall login(String account, String password) {
         return hallDao.findByHallAccountAndHallPassword(
-                account,password);
+                account,
+                DigestUtils.md5DigestAsHex(password.getBytes()));
     }
 }
