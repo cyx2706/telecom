@@ -1,7 +1,9 @@
 package com.telecom.appnmt.Controller;
 
 import com.telecom.appnmt.Entity.Order;
+import com.telecom.appnmt.Entity.Shop;
 import com.telecom.appnmt.Service.OrderService;
+import com.telecom.appnmt.Service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private Order order;
+
+    @Autowired
+    private ShopService shopService;
 
     /**
      * 用户提交订单Controller
@@ -58,6 +63,15 @@ public class UserController {
     public Map<String,Object> getol(HttpServletRequest req, HttpServletResponse rep) {
         Map<String,Object> json = new HashMap<String, Object>();
         List<Map<String, Object>> list = orderService.getListByUser(req.getSession().getAttribute("usr_id").toString(),-1);
+        json.put("data",list);
+        return json;
+    }
+
+    @RequestMapping(value = "/getShopList")
+    public Map<String,Object> getsl(HttpServletRequest req, HttpServletResponse rep) {
+        Map<String,Object> json = new HashMap<String, Object>();
+        // 获取所有商店列表
+        List<Shop> list = shopService.getListByPage(-1);
         json.put("data",list);
         return json;
     }

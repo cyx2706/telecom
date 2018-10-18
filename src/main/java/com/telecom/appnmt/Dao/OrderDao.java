@@ -55,4 +55,11 @@ public interface OrderDao extends JpaRepository<Order, String> {
      */
     @Query(value = "SELECT ord.*,shop.shop_name AS shop_name,shop.hall_id AS hall_id,hall.hall_name AS hall_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id JOIN hall ON shop.hall_id=hall.hall_id ORDER BY ord.ord_time DESC ",nativeQuery = true)
     public List<Map<String,Object>> getAllByAdm();
+
+    /**
+     * 根据id获取订单信息
+     * @param id
+     * @return
+     */
+    public Order findByOrdId(String id);
 }

@@ -115,10 +115,10 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public boolean setOrderStatus(String ordId, int status) {
-        order.setOrdId(ordId);
-        order.setOrdStatus(status);
+        Order order1 = orderDao.findByOrdId(ordId);
+        order1.setOrdStatus(status);
         try {
-            orderDao.save(order);
+            orderDao.save(order1);
             return true;
         } catch (Exception e) {
             throw new RuntimeException("修改订单状态失败!");
