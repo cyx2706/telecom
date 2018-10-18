@@ -18,9 +18,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
 
-    @Autowired
-    private Order order;
-
     /**
      * 在营业厅页面获取每个商店所完成订单的数量统计
      * @param hallId

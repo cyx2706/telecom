@@ -22,7 +22,7 @@ public interface OrderDao extends JpaRepository<Order, String> {
     public List<Map<String,Object>> countShopOrderNumByHallId(String hallId);
 
     /**
-     * (暂未完成) 电信公司后台查看所有营业厅的订单数统计
+     * 电信公司后台查看所有营业厅的订单数统计
      * @return
      */
     @Query(value = "SELECT SUM(ord_num) AS ord_num,res.hall_id as hall_id,res.hall_name AS hall_name " +
@@ -30,7 +30,12 @@ public interface OrderDao extends JpaRepository<Order, String> {
             "GROUP BY res.hall_id",nativeQuery = true)
     public List<Map<String,Object>> countHallOrderNum();
 
-    @Query(value = "SELECT ord.*,shop.shop_name AS shop_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
+    /**
+     * 根据hall_id获取所有相关订单
+     * @param hallId
+     * @return
+     */
+    @Query(value = "SELECT ord.*,ord.ord_name AS usr_name,shop.shop_name AS shop_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE shop.hall_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
     public List<Map<String,Object>> getAllByHallId(String hallId);
 
 
@@ -46,14 +51,14 @@ public interface OrderDao extends JpaRepository<Order, String> {
      * @param usrId
      * @return
      */
-    @Query(value = "SELECT ord.*,shop.shop_name AS shop_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE ord.usr_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
+    @Query(value = "SELECT ord.*,ord.ord_name AS usr_name,shop.shop_name AS shop_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id WHERE ord.usr_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
     public List<Map<String,Object>> getAllByUsrId(String usrId);
 
     /**
      * 管理员可以获取所有订单
      * @return
      */
-    @Query(value = "SELECT ord.*,shop.shop_name AS shop_name,shop.hall_id AS hall_id,hall.hall_name AS hall_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id JOIN hall ON shop.hall_id=hall.hall_id ORDER BY ord.ord_time DESC ",nativeQuery = true)
+    @Query(value = "SELECT ord.*,ord.ord_name AS usr_name,shop.shop_name AS shop_name,shop.hall_id AS hall_id,hall.hall_name AS hall_name FROM `order` AS ord JOIN shop ON shop.shop_id=ord.shop_id JOIN hall ON shop.hall_id=hall.hall_id ORDER BY ord.ord_time DESC ",nativeQuery = true)
     public List<Map<String,Object>> getAllByAdm();
 
     /**

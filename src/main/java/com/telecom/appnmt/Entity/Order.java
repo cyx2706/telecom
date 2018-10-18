@@ -28,6 +28,9 @@ public class Order {
     private int schId;
 
     @Column(nullable = false)
+    private String ordName;
+
+    @Column(nullable = false)
     private String ordTel;
 
     @Column(nullable = false)
@@ -78,6 +81,14 @@ public class Order {
 
     public void setSchId(int schId) {
         this.schId = schId;
+    }
+
+    public String getOrdName() {
+        return ordName;
+    }
+
+    public void setOrdName(String ordName) {
+        this.ordName = ordName;
     }
 
     public String getOrdTel() {

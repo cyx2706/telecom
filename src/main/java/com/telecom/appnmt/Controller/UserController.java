@@ -42,6 +42,9 @@ public class UserController {
         order.setShopId(req.getParameter("shop_id"));
         // 设置套餐ID
         order.setSchId(Integer.parseInt(req.getParameter("sch_id")));
+        // 设置联系人称呼
+        String name = req.getParameter("ord_name");
+        order.setOrdName(name == null || name.equals("") ?  req.getParameter("usr_name") :name);
         // 设置订单电话
         order.setOrdTel(req.getParameter("ord_tel"));
         // 设置订单地址
