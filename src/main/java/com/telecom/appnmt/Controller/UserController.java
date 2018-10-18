@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping(value = "/getOrderList")
     public Map<String,Object> getol(HttpServletRequest req, HttpServletResponse rep) {
         Map<String,Object> json = new HashMap<String, Object>();
-        List<Order> list = orderService.getListByUser(req.getSession().getAttribute("usr_id").toString(),-1);
+        List<Map<String, Object>> list = orderService.getListByUser(req.getSession().getAttribute("usr_id").toString(),-1);
         json.put("data",list);
         return json;
     }

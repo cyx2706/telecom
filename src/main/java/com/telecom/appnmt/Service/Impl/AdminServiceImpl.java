@@ -54,6 +54,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin login(String account, String password) {
         return adminDao.findByAdmAccountAndAdmPassword(
-                account,password);
+                account,
+                DigestUtils.md5DigestAsHex(password.getBytes()));
     }
 }

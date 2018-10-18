@@ -53,6 +53,8 @@ public class LoginController {
         // 登录成功,保存ID到session
         else {
             req.getSession().setAttribute("usr_id",user.getUsrId());
+            json.put("status",1);
+            json.put("info","登录成功!");
         }
         return json;
     }
@@ -77,6 +79,8 @@ public class LoginController {
         // 登录成功,保存ID到session
         else {
             req.getSession().setAttribute("hall_id",hall.getHallId());
+            json.put("status",1);
+            json.put("info","登录成功!");
         }
         return json;
     }
@@ -100,6 +104,8 @@ public class LoginController {
         // 登录成功,保存ID到session
         else {
             req.getSession().setAttribute("shop_id",shop.getShopId());
+            json.put("status",1);
+            json.put("info","登录成功!");
         }
         return json;
     }
@@ -123,6 +129,8 @@ public class LoginController {
         // 登录成功,保存ID到session
         else {
             req.getSession().setAttribute("adm_id",adm.getAdmId());
+            json.put("status",1);
+            json.put("info","登录成功!");
         }
         return json;
     }
