@@ -69,7 +69,7 @@ public class OrderDaoTest {
     @Test
     public void c() {
         try {
-            List<Order> list = orderDao.getAllByHallId("123456");
+            List<Map<String, Object>> list = orderDao.getAllByHallId("123456");
             System.out.println("+++++++++++++"+list.size()+"++++++++++++++");
         } catch (Exception e) {
             e.printStackTrace();

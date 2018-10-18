@@ -90,4 +90,20 @@ public class HallController {
         json.put("data",list);
         return json;
     }
+
+    /**
+     * 获取其下属商店的订单统计结果
+     * @param req
+     * @param res
+     * @return
+     */
+    @RequestMapping(value = "/statistics")
+    public Map<String,Object> f(HttpServletRequest req, HttpServletResponse res) {
+        Map json = new HashMap<String,Object>();
+        // 获取自己管理的商店的统计结果
+        List<Map<String, Object>> list = orderService.getShopStatisticsAtHallPage(
+                req.getSession().getAttribute("hall_id").toString());
+        json.put("data",list);
+        return json;
+    }
 }
