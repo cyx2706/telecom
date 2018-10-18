@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@Order(1)
-//重点
-@WebFilter(filterName = "EncodingFilter", urlPatterns = "/*")
+//@Order(1)
+////重点
+//@WebFilter(filterName = "EncodingFilter", urlPatterns = "/*")
 public class EncodingFilter extends OncePerRequestFilter  {
     private String encoding = "UTF-8";
 
@@ -89,22 +89,3 @@ public class EncodingFilter extends OncePerRequestFilter  {
         }
     }
 }
-
-//public class TestFilterFirst implements Filter {
-//    @Override
-//    public void init(FilterConfig filterConfig) throws ServletException {
-//
-//    }
-//
-//    @Override
-//    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-//            throws IOException, ServletException {
-//        System.out.println("TestFilter1");
-//        filterChain.doFilter(servletRequest,servletResponse);
-//    }
-//
-//    @Override
-//    public void destroy() {
-//
-//    }
-//}

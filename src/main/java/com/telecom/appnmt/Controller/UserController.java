@@ -5,6 +5,8 @@ import com.telecom.appnmt.Entity.Shop;
 import com.telecom.appnmt.Service.OrderService;
 import com.telecom.appnmt.Service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,22 +35,22 @@ public class UserController {
      * @param res
      * @return
      */
-    @RequestMapping(value = "/submit")
-    public Map<String,Object> submit(HttpServletRequest req, HttpServletResponse res) {
+    @PostMapping(value = "/submit")
+    public Map<String,Object> submit(@RequestBody Map<String,Object> paraMap, HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
         // 设置用户id
         order.setUsrId(req.getSession().getAttribute("usr_id").toString());
         // 设置商店id
-        order.setShopId(req.getParameter("shop_id"));
+        order.setShopId(paraMap.get("shop_id").toString());
         // 设置套餐ID
-        order.setSchId(Integer.parseInt(req.getParameter("sch_id")));
+        order.setSchId(Integer.parseInt(paraMap.get("sch_id").toString()));
         // 设置联系人称呼
-        String name = req.getParameter("ord_name");
-        order.setOrdName(name == null || name.equals("") ?  req.getParameter("usr_name") :name);
+        String name = paraMap.get("ord_name").toString();
+        order.setOrdName(name == null || name.equals("") ?  paraMap.get("usr_name").toString() :name);
         // 设置订单电话
-        order.setOrdTel(req.getParameter("ord_tel"));
+        order.setOrdTel(paraMap.get("ord_tel").toString());
         // 设置订单地址
-        order.setOrdAddr(req.getParameter("ord_addr"));
+        order.setOrdAddr(paraMap.get("ord_addr").toString());
 
         json.put("data",orderService.create(order));
         json.put("info","提交成功!");

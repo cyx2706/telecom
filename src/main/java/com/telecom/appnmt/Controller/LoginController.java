@@ -9,8 +9,7 @@ import com.telecom.appnmt.Service.HallService;
 import com.telecom.appnmt.Service.ShopService;
 import com.telecom.appnmt.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,11 +39,11 @@ public class LoginController {
      * @param res
      * @return
      */
-    @RequestMapping(value = "/user")
-    public Map<String,Object> user(HttpServletRequest req, HttpServletResponse res) {
+    @PostMapping(value = "/user")
+    public Map<String,Object> user(@RequestBody Map<String,Object> paraMap,HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
-        String tel = req.getParameter("usr_tel");
-        String openId = req.getParameter("open_id");
+        String tel = paraMap.get("usr_tel").toString();
+        String openId = paraMap.get("open_id").toString();
         User user = userService.login(tel,openId);
         // 登录失败发出提示
         if (user == null) {
@@ -66,11 +65,11 @@ public class LoginController {
      * @param res
      * @return
      */
-    @RequestMapping(value = "/hall")
-    public Map<String,Object> hall(HttpServletRequest req, HttpServletResponse res) {
+    @PostMapping(value = "/hall")
+    public Map<String,Object> hall(@RequestBody Map<String,Object> paraMap,HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
-        String account = req.getParameter("account");
-        String password = req.getParameter("password");
+        String account = paraMap.get("account").toString();
+        String password = paraMap.get("password").toString();
         Hall hall = hallService.login(account,password);
         // 登录失败发出提示
         if (hall == null) {
@@ -91,11 +90,11 @@ public class LoginController {
      * @param res
      * @return
      */
-    @RequestMapping(value = "/shop")
-    public Map<String,Object> shop(HttpServletRequest req, HttpServletResponse res) {
+    @PostMapping(value = "/shop")
+    public Map<String,Object> shop(@RequestBody Map<String,Object> paraMap,HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
-        String account = req.getParameter("account");
-        String password = req.getParameter("password");
+        String account = paraMap.get("account").toString();
+        String password = paraMap.get("password").toString();
         Shop shop = shopService.login(account,password);
         // 登录失败发出提示
         if (shop == null) {
@@ -116,11 +115,11 @@ public class LoginController {
      * @param res
      * @return
      */
-    @RequestMapping(value = "/adm")
-    public Map<String,Object> adm(HttpServletRequest req, HttpServletResponse res) {
+    @PostMapping(value = "/adm")
+    public Map<String,Object> adm(@RequestBody Map<String,Object> paraMap,HttpServletRequest req, HttpServletResponse res) {
         Map<String,Object> json = new HashMap<String, Object>();
-        String account = req.getParameter("account");
-        String password = req.getParameter("password");
+        String account = paraMap.get("account").toString();
+        String password = paraMap.get("password").toString();
         Admin adm = adminService.login(account,password);
         // 登录失败发出提示
         if (adm == null) {
@@ -135,4 +134,12 @@ public class LoginController {
         return json;
     }
 
+//    @PostMapping(value = "/post")
+//    public Map<String,Object> d(@RequestBody Map<String,Object> reqMap, HttpServletRequest req, HttpServletResponse res) {
+//        Map<String,Object> json = new HashMap<String, Object>();
+//        json.put("data1",reqMap);
+//        json.put("data2",paraMap.getMap());
+//        json.put("data3",res.getStatus());
+//        return json;
+//    }
 }
