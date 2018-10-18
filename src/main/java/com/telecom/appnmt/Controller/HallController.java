@@ -46,7 +46,7 @@ public class HallController {
         String shopId = req.getParameter("shop_id");
         // 如果有传递对应的shop_id则寻找shop_id对应的订单列表
         if (shopId != null && !shopId.equals("")) {
-            List<Order> list = orderService.getListByShop(shopId,-1);
+            List<Map<String, Object>> list = orderService.getListByShop(shopId,-1);
             json.put("data",list);
         }
         // 如果没有传递,则直接返回所有与该营业厅相关联的订单列表
@@ -86,7 +86,7 @@ public class HallController {
     @RequestMapping(value = "/getShopList")
     public Map<String,Object> e(HttpServletRequest req, HttpServletResponse res){
         Map json = new HashMap<String,Object>();
-        List<Shop> list = shopService.getMyShopList(req.getSession().getAttribute("hall_id").toString());
+        List<Map<String,Object>> list = shopService.getMyShopList(req.getSession().getAttribute("hall_id").toString());
         json.put("data",list);
         return json;
     }

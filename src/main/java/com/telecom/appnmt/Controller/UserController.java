@@ -43,14 +43,15 @@ public class UserController {
         // 设置商店id
         order.setShopId(paraMap.get("shop_id").toString());
         // 设置套餐ID
-        order.setSchId(Integer.parseInt(paraMap.get("sch_id").toString()));
+        String sch_id = (String)paraMap.get("sch_id");
+        order.setSchId(Integer.parseInt(sch_id == null || sch_id.equals("") ? "1": sch_id));
         // 设置联系人称呼
         String name = paraMap.get("ord_name").toString();
         order.setOrdName(name == null || name.equals("") ?  paraMap.get("usr_name").toString() :name);
         // 设置订单电话
         order.setOrdTel(paraMap.get("ord_tel").toString());
         // 设置订单地址
-        order.setOrdAddr(paraMap.get("ord_addr").toString());
+        order.setOrdAddr(paraMap.get("ord_address").toString());
 
         json.put("data",orderService.create(order));
         json.put("info","提交成功!");
@@ -76,7 +77,7 @@ public class UserController {
     public Map<String,Object> getsl(HttpServletRequest req, HttpServletResponse rep) {
         Map<String,Object> json = new HashMap<String, Object>();
         // 获取所有商店列表
-        List<Shop> list = shopService.getListByPage(-1);
+        List<Map<String,Object>> list = shopService.getListByPage(-1);
         json.put("data",list);
         return json;
     }

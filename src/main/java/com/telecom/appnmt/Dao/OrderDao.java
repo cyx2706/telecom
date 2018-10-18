@@ -44,7 +44,8 @@ public interface OrderDao extends JpaRepository<Order, String> {
      * @param shopId
      * @return
      */
-    public List<Order> getAllByShopId(String shopId);
+    @Query(value = "SELECT * FROM `order` ord WHERE ord.shop_id=?1 ORDER BY ord.ord_time DESC ",nativeQuery = true)
+    public List<Map<String,Object>> getAllByShopId(String shopId);
 
     /**
      * 用户可获取自己的订单

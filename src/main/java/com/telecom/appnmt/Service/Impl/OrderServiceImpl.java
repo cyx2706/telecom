@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
      * @param page 默认不分页,如果有分页要求,传入页数为参数即可
      * @return
      */
-    public List<Order> getListByShop(String shopId, int page) {
+    public List<Map<String, Object>> getListByShop(String shopId, int page) {
         try{
             return orderDao.getAllByShopId(shopId);
         } catch (Exception e) {

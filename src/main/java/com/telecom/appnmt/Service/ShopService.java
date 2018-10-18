@@ -3,6 +3,7 @@ package com.telecom.appnmt.Service;
 import com.telecom.appnmt.Entity.Shop;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ShopService {
 
@@ -17,7 +18,7 @@ public interface ShopService {
      * @param page
      * @return
      */
-    public List<Shop> getListByPage(int page);
+    public List<Map<String, Object>> getListByPage(int page);
 
     /**
      * 登录接口,根据账号及密码登录
@@ -32,5 +33,5 @@ public interface ShopService {
      * @param HallId
      * @return
      */
-    public List<Shop> getMyShopList(String HallId);
+    public List<Map<String,Object>> getMyShopList(String HallId);
 }

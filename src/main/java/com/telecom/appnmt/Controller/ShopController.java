@@ -24,7 +24,7 @@ public class ShopController {
         Map json = new HashMap<String,Object>();
         String shopId = req.getSession().getAttribute("shop_id").toString();
         // 如果有传递对应的shop_id则寻找shop_id对应的订单列表
-        List<Order> list = orderService.getListByShop(shopId,-1);
+        List<Map<String, Object>> list = orderService.getListByShop(shopId,-1);
         json.put("data",list);
         return json;
     }

@@ -5,15 +5,11 @@ import com.telecom.appnmt.Entity.Shop;
 import com.telecom.appnmt.Service.ShopService;
 import com.telecom.appnmt.Utils.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ShopServiceImpl implements ShopService {
@@ -60,17 +56,18 @@ public class ShopServiceImpl implements ShopService {
      * @param page
      * @return
      */
-    public List<Shop> getListByPage(int page) {
+    public List<Map<String, Object>> getListByPage(int page) {
         if (page < 0) {
-            return shopDao.findAll();
+            return shopDao.getAll();
         }
-        Pageable pageable = new PageRequest(page, 5, Sort.Direction.ASC, "shopAccount");
-        try {
-            Page<Shop> shops= shopDao.findAll(pageable);
-            return shops.getContent();
-        } catch (Exception e) {
-            throw new RuntimeException("系统在获取商店列表时发生了错误,请稍后再试!");
-        }
+        return shopDao.getAll();
+//        Pageable pageable = new PageRequest(page, 5, Sort.Direction.ASC, "shopAccount");
+//        try {
+//            Page<Shop> shops= shopDao.findAll(pageable);
+//            return shops.getContent();
+//        } catch (Exception e) {
+//            throw new RuntimeException("系统在获取商店列表时发生了错误,请稍后再试!");
+//        }
     }
 
     /**
@@ -91,7 +88,7 @@ public class ShopServiceImpl implements ShopService {
      * @param HallId
      * @return
      */
-    public List<Shop> getMyShopList(String HallId) {
+    public List<Map<String,Object>> getMyShopList(String HallId) {
         try {
             return shopDao.findAllByHallId(HallId);
         } catch (Exception e) {
